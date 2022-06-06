@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProjetoTCC.Views.Home"
+             BackgroundColor="{StaticResource CorPrincipal}"
+             NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Content>
+        <StackLayout >
+
+            <StackLayout HorizontalOptions="Center">
+
+                <Grid RowSpacing="10" Padding="10"  Margin="-30,10,10,10">
+                    <ImageButton Source="AdotarPet4.png"    Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="7" HeightRequest="80" WidthRequest="95" Padding="0,12,5,0" BackgroundColor="{StaticResource CorSecundaria}" CornerRadius="3" HorizontalOptions="Center" VerticalOptions="Center" Clicked="BotaoAdotarPet_Clicked"></ImageButton>
+                    <ImageButton Source="CadastrarPet.png"  Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="7" HeightRequest="80" WidthRequest="95" Padding="0,12,5,0" BackgroundColor="{StaticResource CorSecundaria}" CornerRadius="3" HorizontalOptions="Center" VerticalOptions="Center" Clicked="BotaoCadastrarPet_Clicked"></ImageButton>
+                    <ImageButton Source="MeusPets.png"      Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="7" HeightRequest="80" WidthRequest="95" Padding="0,12,5,0" BackgroundColor="{StaticResource CorSecundaria}" CornerRadius="3" HorizontalOptions="Center" VerticalOptions="Center" Clicked="BotaoMeusPets_Clicked"></ImageButton>
+                    <ImageButton Source="MeuPerfil.png"     Grid.Row="3" Grid.Column="4" Grid.ColumnSpan="7" HeightRequest="80" WidthRequest="95" Padding="0,12,5,0" BackgroundColor="{StaticResource CorSecundaria}" CornerRadius="3" HorizontalOptions="Center" VerticalOptions="Center" Clicked="BotaoMeuPerfil_Clicked"></ImageButton>
+                </Grid>
+
+            </StackLayout>
+
+           
+            <StackLayout HorizontalOptions="Start" VerticalOptions="EndAndExpand">
+                <Image 
+                   HeightRequest="270"
+                   Source="ImgBackground.png"></Image>
+            </StackLayout>
+
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>

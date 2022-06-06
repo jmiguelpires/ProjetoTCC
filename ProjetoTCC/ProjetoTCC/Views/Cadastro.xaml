@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProjetoTCC.Views.Cadastro"
+             Visual="Material"               
+             xmlns:iconFont="clr-namespace:ProjetoTCC.Fonts;assembly=ProjetoTCC"
+             xmlns:comportamentos="clr-namespace:ProjetoTCC.Comportamentos"
+             Title="Cadastro">
+
+    <Grid BackgroundColor="{StaticResource CorPrincipal}" RowDefinitions="*,auto">
+
+        <ScrollView>
+            <StackLayout>
+
+                <StackLayout Padding="20" Spacing="20" >
+                    
+                    <Label x:Name="lblCabecalho" Text="Informe seus dados para criar seu cadastro" FontSize="14" HorizontalOptions="CenterAndExpand" VerticalTextAlignment="Center"/>
+                    
+                    <Grid >
+                        <Image HorizontalOptions="End" >
+                            <Image.Source>
+                                <FontImageSource
+                                      FontFamily="FonteIcones"
+                                      Glyph="{x:Static iconFont:IconFont.Logout}"
+                                      Size="30"
+                                      Color="{StaticResource CorSecundaria}">
+                                </FontImageSource>
+                            </Image.Source>
+                        </Image>
+                    </Grid>
+                    
+                    
+
+                    <!--Foto de perfil-->
+                    <Frame x:Name="frameFoto" Padding="0" CornerRadius="75" IsClippedToBounds="True" HasShadow="false" HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="150" WidthRequest="150">
+                        <Image Aspect="AspectFill" HorizontalOptions="Center" VerticalOptions="Center" x:Name="foto" HeightRequest="100" WidthRequest="100">
+                            <Image.Source>
+                                <FontImageSource
+                                      FontFamily="FonteIcones"
+                                      Glyph="{x:Static iconFont:IconFont.Camera}"
+                                      Size="100"
+                                      Color="{StaticResource CorSecundaria}">
+                                </FontImageSource>
+                            </Image.Source>
+
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer  NumberOfTapsRequired="1" Tapped="Foto_Tapped"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </Frame>
+
+                </StackLayout>
+
+                <StackLayout Padding="20,10,20,10" Spacing="10" >
+
+                    <!--Nome-->
+                    <Entry Placeholder="Nome" Text="{Binding Path=Usuario.nmUsuario}" HeightRequest="60" Keyboard="Text" ReturnType="Next" BackgroundColor="{StaticResource CorPrincipal}" FontSize="Default"/>
+
+                    <!--CPF/CNPJ-->
+                    <Entry Placeholder="CPF/CNPJ" x:Name="entryCPF" Text="{Binding Path=Usuario.CPFCNPJ, Mode=TwoWay}" Keyboard="Numeric" MaxLength="18" ReturnType="Next" BackgroundColor="{StaticResource CorPrincipal}" FontSize="Default">
+                        <Entry.Behaviors>
+                            <comportamentos:ValidaCPFCNPJ/>
+                            <comportamentos:FormataCPFCNPJ/>
+                        </Entry.Behaviors>
+                    </Entry>
+
+                    <!--Senha-->
+                    <Entry Placeholder="Senha" Text="{Binding Path=Usuario.senha}" IsPassword="True" Keyboard="Numeric" MaxLength="8" x:Name="entrySenha" ReturnType="Next" BackgroundColor="{StaticResource CorPrincipal}" FontSize="Default">
+
+                    </Entry>
+
+                    <!--Confirmação Senha-->
+                    <!--<Entry Placeholder="Confirmar senha" Text="{Binding Path=Usuario.senha}" IsPassword="True" MaxLength="8" Keyboard="Numeric" x:Name="entryConfirmaSenha"  ReturnType="Next">
+
+                    </Entry>-->
+
+                    <Grid>
+                        <!--Data de nascimento-->
+                        <Entry Placeholder="Data de nascimento" x:Name="entryDataDeNascimento" Text="{Binding DtNascimento}" Keyboard="Numeric" MaxLength="10" ReturnType="Next" BackgroundColor="{StaticResource CorPrincipal}" FontSize="Default">
+                            <Entry.Behaviors>
+                                <comportamentos:ValidaData/>
+                                <comportamentos:FormataData/>
+                            </Entry.Behaviors>
+                        </Entry>
+                        <!--<DatePicker x:Name="datePickerDataDeNascimento" IsVisible="False" Visual="Default"/>-->
+                    </Grid>
+
+                    <!--Email-->
+                    <Entry Placeholder="E-mail" Text="{Binding Path=Usuario.email}" Keyboard="Email" x:Name="entryEmail" ReturnType="Next" BackgroundColor="{StaticResource CorPrincipal}" FontSize="Default">
+
+                    </Entry>
+
+                    <!--Confirmação Email-->
+                    <!--<Entry Placeholder="Confirma e-mail" Text="{Binding Path=Usuario.email}" Keyboard="Email" x:Name="entryConfirmaEmail" ReturnType="Next">
+
+                    </Entry>-->
+
+                    <!--Celular-->
+                    <Entry Placeholder="Celular" Text="{Binding Path=Usuario.telefone, Mode=TwoWay}" Keyboard="Numeric"  MaxLength="16" ReturnType="Done" BackgroundColor="{StaticResource CorPrincipal}" FontSize="Default">
+                        <Entry.Behaviors>
+                            <comportamentos:ValidaTelefone />
+                            <comportamentos:FormataTelefone />
+                        </Entry.Behaviors>
+                    </Entry>
+
+                    <!--Estado-->
+                    <Picker Title="Estado" x:Name="pickerEstado" BackgroundColor="{StaticResource CorPrincipal}" ItemDisplayBinding="{Binding CdEstado}" SelectedItem="{Binding Estado}" ItemsSource="{Binding ListaEstados}" Unfocused="PickerEstado_Unfocused" FontSize="Default" />
+
+                    <!--Cidade-->
+                    <Picker Title="Cidade" x:Name="pickerCidade" BackgroundColor="{StaticResource CorPrincipal}" ItemDisplayBinding="{Binding Nome}" SelectedItem="{Binding Cidade}" ItemsSource="{Binding ListaCidades}" FontSize="Default" />
+
+                </StackLayout>
+
+                <StackLayout Spacing="0" Padding="20,10,20,0">
+
+                    <!--Sexo-->
+                    <Label Text="Sexo" FontSize="Default"/>
+
+                    <StackLayout Padding="0" Spacing="0" RadioButtonGroup.GroupName="sexo" Orientation="Horizontal">
+                        <RadioButton Content="Masculino" IsChecked="{Binding Path=Usuario.SexoMasculino, Mode=TwoWay}"  FontSize="Small" TextColor="#555" />
+                        <RadioButton Content="Feminino" IsChecked="{Binding Path=Usuario.SexoFeminino, Mode=TwoWay}"    FontSize="Small" TextColor="#555"/>
+                        <RadioButton Content="Não se aplica" IsChecked="{Binding Path=Usuario.SexoOutros, Mode=TwoWay}" FontSize="Small" TextColor="#555"/>
+                    </StackLayout>
+
+                </StackLayout>
+
+            </StackLayout>
+        </ScrollView>
+
+        <!--Botão Cadastrar-->
+        <StackLayout Grid.Row="1" Spacing="0" Padding="20" VerticalOptions="End">
+            <Button x:Name="btnCadastrar" Command="{Binding CadastrarCommand}"/>
+        </StackLayout>
+
+    </Grid>
+</ContentPage>

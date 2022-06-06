@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProjetoTCC.Views.PetDetalhe"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:iconFont="clr-namespace:ProjetoTCC.Fonts;assembly=ProjetoTCC"
+             xmlns:toolkit="http://xamarin.com/schemas/2020/toolkit"
+             Visual="Material"
+             BackgroundColor="{StaticResource CorPrincipal}"
+             x:Name="paginaPetDetalhe"
+             Title="Detalhe do Pet">
+    <ContentPage.Content>
+
+        <!--<Label Text="{Binding Path=UsuarioPet.nmPet}" FontSize="14" HorizontalOptions="CenterAndExpand" VerticalTextAlignment="Center"/>-->
+        <ScrollView>
+
+            <StackLayout HorizontalOptions="FillAndExpand" >
+                <!--Grid com o Carousel de Imagens do Pet-->
+                <Grid HeightRequest="550">
+
+                    <CarouselView ItemsSource="{Binding BindingContext.ListaImgPet, Mode=TwoWay, Source={x:Reference paginaPetDetalhe}}"
+                                          IsScrollAnimated="True"                                          
+                                          IndicatorView="indicatorView"                                          
+                                          HeightRequest="200">
+
+                        <CarouselView.ItemTemplate>
+                            <DataTemplate >
+                                <Grid>
+                                    <ffimageloading:CachedImage Source="{Binding ImgSourcePet}" Aspect="AspectFill" />
+                                </Grid>
+                            </DataTemplate>
+                        </CarouselView.ItemTemplate>
+
+                    </CarouselView>
+
+                </Grid>
+
+                <IndicatorView x:Name="indicatorView"
+                   IndicatorColor="LightGray"                   
+                   SelectedIndicatorColor="{StaticResource CorSecundaria}"
+                   HorizontalOptions="Center" />
+
+                <!-- Grid nome e idade do pet-->
+                <Grid RowSpacing="0" ColumnDefinitions="auto,auto">
+                    <Label Grid.Row="1" Grid.Column="0" Padding="15,0,0,0" FontAttributes="Bold" TextColor="{StaticResource CorSecundaria}" Text="{Binding Path=UsuarioPet.nmPet}" FontSize="Title" VerticalTextAlignment="Center" HorizontalOptions="Start" />
+                    <Label Grid.Row="1" Grid.Column="1" Padding="0,6,0,0" TextColor="{StaticResource CorSecundaria}" Text="{Binding Path=UsuarioPet.idade, StringFormat=', {0:F0}'}" FontSize="Subtitle" VerticalTextAlignment="Center" />
+                </Grid>
+
+                <!--Grid Endereço-->
+                <Grid RowSpacing="0" ColumnDefinitions="auto,auto" RowDefinitions="auto,auto">
+
+                    <Image Grid.Row="0" Grid.Column="0" Margin="12,0,0,0">
+                        <Image.Source>
+                            <FontImageSource
+                                      FontFamily="FonteIcones"
+                                      Glyph="{x:Static iconFont:IconFont.MapMarker}"
+                                      Size="Default"
+                                      Color="{StaticResource CorSecundaria}">
+                            </FontImageSource>
+                        </Image.Source>
+                    </Image>
+
+                    <Label Grid.Row="0" Grid.Column="1"  Padding="0,0,0,0"  HorizontalOptions="Start"  FontSize="12" TextColor="{StaticResource CorSecundaria}" Text="{Binding Path=UsuarioPet.Usuario.Cidade}" VerticalTextAlignment="Center"  />
+                    <Label Grid.Row="0" Grid.Column="2"                      HorizontalOptions="Start"  FontSize="12" TextColor="{StaticResource CorSecundaria}" Text="{Binding Path=UsuarioPet.Usuario.CdEstado, StringFormat='({0:F0})'}" VerticalTextAlignment="Center"  />
+                </Grid>
+
+                <!-- Grid Informações do Pet-->
+                <Grid RowSpacing="0">
+                    <Label Grid.Row="1" Grid.Column="0" Padding="15,0,0,0" FontAttributes="Bold" TextColor="{StaticResource CorSecundaria}" Text="Informações do pet" FontSize="14" HorizontalOptions="Start" />
+
+                    <Label Grid.Row="2" Grid.Column="0" Padding="15,0,0,0" TextColor="{StaticResource CorSecundaria}" Text="{Binding Path=UsuarioPet.sexoEscrito, StringFormat='Sexo: {0:F0}'}" FontSize="12" />
+                    <Label Grid.Row="3" Grid.Column="0" Padding="15,0,0,0" TextColor="{StaticResource CorSecundaria}" Text="{Binding Path=UsuarioPet.raca, StringFormat='Raça: {0:F0}'}" FontSize="12" />
+                    <Label Grid.Row="4" Grid.Column="0" Padding="15,0,0,0" TextColor="{StaticResource CorSecundaria}" Text="{Binding Path=UsuarioPet.porteEscrito, StringFormat='Porte: {0:F0}'}" FontSize="12" />
+                    <Label Grid.Row="5" Grid.Column="0" Padding="15,0,0,0" TextColor="{StaticResource CorSecundaria}" Text="{Binding Path=UsuarioPet.pesokg, StringFormat='Peso: {0:F0}kg'}" FontSize="12" />
+
+                    <Label Grid.Row="2" Grid.Column="1" Padding="15,0,0,0" TextColor="{StaticResource CorSecundaria}" Text="Vacinado" FontSize="12" VerticalOptions="Center" />
+                    <Label Grid.Row="3" Grid.Column="1" Padding="15,0,0,0" TextColor="{StaticResource CorSecundaria}" Text="Vermifugado" FontSize="12" VerticalOptions="Center" />
+                    <Label Grid.Row="4" Grid.Column="1" Padding="15,0,0,0" TextColor="{StaticResource CorSecundaria}" Text="Pedigree" FontSize="12" VerticalOptions="Center" />
+                    <Label Grid.Row="5" Grid.Column="1" Padding="15,0,0,0" TextColor="{StaticResource CorSecundaria}" Text="Cuidados  especiais" FontSize="12" VerticalOptions="Center" />
+
+                    <Switch Grid.Row="2" Grid.Column="1" IsToggled="{Binding Path=UsuarioPet.inVacinado}"        OnColor="{Binding Path=UsuarioPet.onColorSwitch_inVacinado}"        ThumbColor="{Binding Path=UsuarioPet.thumbColorSwitch_inVacinado}"        IsEnabled="False" HorizontalOptions="EndAndExpand" VerticalOptions="End" />
+                    <Switch Grid.Row="3" Grid.Column="1" IsToggled="{Binding Path=UsuarioPet.inVermifugado}"     OnColor="{Binding Path=UsuarioPet.onColorSwitch_inVermifugado}"     ThumbColor="{Binding Path=UsuarioPet.thumbColorSwitch_inVermifugado}"     IsEnabled="False" HorizontalOptions="EndAndExpand" VerticalOptions="End" />
+                    <Switch Grid.Row="4" Grid.Column="1" IsToggled="{Binding Path=UsuarioPet.inPedigree}"        OnColor="{Binding Path=UsuarioPet.onColorSwitch_inPedigree}"        ThumbColor="{Binding Path=UsuarioPet.thumbColorSwitch_inPedigree}"        IsEnabled="False" HorizontalOptions="EndAndExpand" VerticalOptions="End" />
+                    <Switch Grid.Row="5" Grid.Column="1" IsToggled="{Binding Path=UsuarioPet.inCuidadoEspecial}" OnColor="{Binding Path=UsuarioPet.onColorSwitch_inCuidadoEspecial}" ThumbColor="{Binding Path=UsuarioPet.thumbColorSwitch_inCuidadoEspecial}" IsEnabled="False" HorizontalOptions="EndAndExpand" VerticalOptions="End" />
+                </Grid>
+
+                <!-- Grid Personalidade-->
+                <Grid RowSpacing="-100">
+                    <Label Grid.Row="0" Grid.Column="0" Padding="15,0,0,0" FontAttributes="Bold" TextColor="{StaticResource CorSecundaria}" Text="Personalidade" FontSize="14" HorizontalOptions="Start" />
+
+                    <Frame Grid.Row="1" Margin="10,0,10,10"  BackgroundColor="LightGray" HasShadow="True"  CornerRadius="10" HeightRequest="80" >
+                        <Grid>
+
+                            <CollectionView ItemsSource="{Binding ListaImgPersonalidadePet}" x:Name="collectionView" >
+                                <CollectionView.ItemsLayout>
+                                    <GridItemsLayout VerticalItemSpacing="1" Orientation="Horizontal" Span="2" />
+                                </CollectionView.ItemsLayout>
+
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+
+                                        <ffimageloading:CachedImage Source="{Binding .}"  HeightRequest="75" WidthRequest="50"/>
+
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+
+                        </Grid>
+                    </Frame>
+                </Grid>
+
+                <!-- Grid Descrição do Pet/Motivo adoção-->
+                <Grid RowSpacing="-100">
+
+                    <Label Grid.Row="0" Grid.Column="0" Padding="15,0,0,0" FontAttributes="Bold" TextColor="{StaticResource CorSecundaria}" Text="Descrição" FontSize="14" HorizontalOptions="Start" />
+
+                    <Frame Grid.Row="1" Margin="10,0,10,10" BorderColor="{StaticResource CorSecundaria}" BackgroundColor="WhiteSmoke" HasShadow="True" CornerRadius="10" HeightRequest="80" >
+                        <ScrollView Orientation="Vertical">
+                            <Label FontAttributes="None" TextColor="{StaticResource CorSecundaria}" Text="{Binding Path=UsuarioPet.txDescricao}" FontSize="12" HorizontalOptions="Start" />
+                        </ScrollView>
+                    </Frame>
+                </Grid>
+
+                <!--Linha separadora-->
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="10,0,10,0">
+                    <BoxView BackgroundColor="{StaticResource CorSecundaria}" HorizontalOptions="Center" HeightRequest="1" WidthRequest="100"  />
+                </StackLayout>
+
+                <!--Grid Anunciante-->
+                <Grid  ColumnDefinitions="auto,auto" RowDefinitions="auto,auto" Margin="15">
+                    
+                    <Label Grid.Row="0" Grid.Column="0" Padding="2,0,0,5" HorizontalOptions="Start"  FontSize="14" FontAttributes="Bold" TextColor="{StaticResource CorSecundaria}" Text="Anunciante"  />
+
+                    <StackLayout Grid.Row="1" Grid.Column="0" >
+                        <Frame x:Name="frameFoto" Padding="0" CornerRadius="15" IsClippedToBounds="True" HasShadow="True" HorizontalOptions="Start" VerticalOptions="Start" HeightRequest="100" WidthRequest="100">
+                            <Image Aspect="AspectFill" HorizontalOptions="Center" VerticalOptions="Center" x:Name="frameFotoUsuario" HeightRequest="100" WidthRequest="100">
+
+                            </Image>
+                        </Frame>
+                    </StackLayout>
+
+                    <Label Text="{Binding Path=UsuarioPet.Usuario.nmUsuario}" Grid.Row="1" Grid.Column="1" Padding="5,10,0,0" HorizontalOptions="Start" VerticalOptions="Start"  FontSize="12" FontAttributes="None" TextColor="{StaticResource CorSecundaria}"    />
+                    <Image Source="iconWhatsapp.png"                          Grid.Row="1" Grid.Column="1" Margin="2,38,0,0"   HorizontalOptions="Start" VerticalOptions="Start"  HeightRequest="20" />
+                    <Label Text="{Binding Path=UsuarioPet.Usuario.telefone}"  Grid.Row="1" Grid.Column="1" Padding="25,39,0,0"  FontSize="12" FontAttributes="None" TextColor="{StaticResource CorSecundaria}" />
+
+                </Grid>
+
+            </StackLayout>
+
+
+        </ScrollView>
+    </ContentPage.Content>
+    <!--<ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" Color="{StaticResource CorSecundaria}" VerticalOptions="Center" HeightRequest="30" WidthRequest="30" HorizontalOptions="Center"/>-->
+</ContentPage>

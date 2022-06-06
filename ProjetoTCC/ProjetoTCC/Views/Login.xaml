@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProjetoTCC.Views.Login"
+             NavigationPage.HasNavigationBar="False">
+
+    <StackLayout BackgroundColor="{StaticResource CorPrincipal}">
+
+        <ScrollView BackgroundColor="{StaticResource CorPrincipal}">
+
+            <StackLayout>
+
+
+                <StackLayout Padding="50">
+                    <Label Text="Seja bem-vindo ao" FontSize="Title" HorizontalTextAlignment="Center" TextColor="{StaticResource CorSecundaria}"/>
+                    <Label Text="Miaume" FontSize="Title" HorizontalTextAlignment="Center" TextColor="{StaticResource CorSecundaria}"/>
+                </StackLayout>
+
+                <StackLayout Padding="20,10,20,10" Spacing="10" VerticalOptions="CenterAndExpand">
+                    <Entry Placeholder="E-mail" Keyboard="Email" Text="{Binding Email}" ReturnType="Next" PlaceholderColor="{StaticResource CorSecundaria}" TextColor="{StaticResource CorSecundaria}" />
+                    <Entry Placeholder="Senha" IsPassword="True" Text="{Binding Senha}" Keyboard="Default" x:Name="entrySenha" ReturnType="Done" PlaceholderColor="{StaticResource CorSecundaria}"/>
+                </StackLayout>
+
+                <StackLayout Padding="20,10,20,10" Spacing="10">
+                    <Button Text="Entrar" Command="{Binding LoginCommand}"/>
+
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                        <BoxView BackgroundColor="{StaticResource CorSecundaria}" HorizontalOptions="FillAndExpand" VerticalOptions="Center" HeightRequest="1" />
+                        <Label Text="ou" TextColor="{StaticResource CorSecundaria}" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Medium" />
+                        <BoxView BackgroundColor="{StaticResource CorSecundaria}" HorizontalOptions="FillAndExpand" VerticalOptions="Center" HeightRequest="1"  />
+                    </StackLayout>
+
+                    <Button Text="Continuar como convidado" TextColor="{StaticResource CorSecundaria}" BackgroundColor="{StaticResource CorPrincipal}" BorderWidth="1" BorderColor="{StaticResource CorSecundaria}" Command="{Binding ConvidadoCommand}" />
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal"  Padding="20,10,20,20">
+                    <Label Text="Esqueci minha senha" TextColor="{StaticResource CorSecundaria}" HorizontalOptions="Center" VerticalOptions="EndAndExpand" FontSize="Small" >
+                    </Label>
+
+                    <Label Text="Criar conta" TextColor="{StaticResource CorSecundaria}" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" FontSize="Small" >
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding CadastroCommand}" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
+
+            </StackLayout>
+
+
+        </ScrollView>
+
+    </StackLayout>
+
+</ContentPage>

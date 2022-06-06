@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProjetoTCC.App">
+    <Application.Resources>
+        
+        <!--Cor-->
+        <Color x:Key="CorPrincipal">#e3f5ff</Color>
+        <Color x:Key="CorSecundaria">#00374f</Color>
+
+        <!--Botão-->
+        <Style TargetType="Button">
+            <Setter Property="BackgroundColor" Value="{StaticResource CorSecundaria}" />
+            <Setter Property="TextColor" Value="{StaticResource CorPrincipal}" />
+            <Setter Property="HeightRequest" Value="40"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="CornerRadius" Value="5"/>
+        </Style>
+        
+        <!--Imagens-->
+        <x:String x:Key="ImgBackground">ImgBackground.png</x:String>
+    </Application.Resources>
+</Application>

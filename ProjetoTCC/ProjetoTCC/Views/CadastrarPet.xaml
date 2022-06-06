@@ -1,0 +1,340 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProjetoTCC.Views.CadastrarPet"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:toolkit="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:iconFont="clr-namespace:ProjetoTCC.Fonts;assembly=ProjetoTCC"
+             xmlns:efeitos="clr-namespace:ProjetoTCC.Efeitos"
+             xmlns:comportamentos="clr-namespace:ProjetoTCC.Comportamentos"
+             BackgroundColor="{StaticResource CorPrincipal}"
+             x:Name="paginaCadastrarPet"
+             Title="Cadastrar Pet para adoção">
+    <ContentPage.Content>
+
+        <ScrollView>
+
+            <StackLayout>
+
+                <!-- Grid Tipo do pet-->
+                <Grid ColumnDefinitions="auto,auto,auto" >
+                    <Label Grid.Row="0" Grid.Column="0" Padding="15,25,0,0" FontAttributes="None" TextColor="{StaticResource CorSecundaria}" Text="Tipo do Pet:" FontSize="18" HorizontalOptions="Start" />
+                    <ImageButton Source="imageButtonCachorro_Escuro.png" x:Name="btnCachorro"     Padding="4,6,4,4" Grid.Row="0" Grid.Column="1" Margin="10,10,0,0" WidthRequest="46" HeightRequest="46" CornerRadius="23" BackgroundColor="{StaticResource CorPrincipal}" BorderColor="{StaticResource CorSecundaria}" BorderWidth="1" Clicked="SelecionouTipoPetCachorro_Clicked"/>
+                    <ImageButton Source="imageButtonGato_Escuro.png"     x:Name="btnGato"         Padding="4,6,4,4" Grid.Row="0" Grid.Column="2" Margin="10,10,0,0" WidthRequest="46" HeightRequest="46" CornerRadius="23" BackgroundColor="{StaticResource CorPrincipal}" BorderColor="{StaticResource CorSecundaria}" BorderWidth="1" Clicked="SelecionouTipoPetGato_Clicked"/>
+                </Grid>
+
+
+                <!--Frame ImgPet1-->
+                <Frame x:Name="frameImgPet1" Grid.Column="0" Grid.Row="0" Margin="20,15,10,10" BackgroundColor="#DFDFDF" CornerRadius="5" IsClippedToBounds="True" HasShadow="True" HorizontalOptions="Center" HeightRequest="150" WidthRequest="310">
+                    <StackLayout HorizontalOptions="Center" VerticalOptions="Center" >
+                        <Image Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Center" x:Name="ImgPet1" HeightRequest="150" WidthRequest="310">
+                            <Image.Source>
+                                <FontImageSource
+                                      FontFamily="FonteIcones"
+                                      Glyph="{x:Static iconFont:IconFont.Plus}"
+                                      Size="40"
+                                      Color="{StaticResource CorSecundaria}">
+                                </FontImageSource>
+                            </Image.Source>
+
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer  NumberOfTapsRequired="1" Tapped="ImgPet1_Tapped"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </StackLayout>
+                </Frame>
+
+                <Grid RowDefinitions="auto" ColumnDefinitions="auto,auto,auto" >
+                    <!--Frame ImgPet2-->
+                    <Frame x:Name="frameImgPet2" Grid.Column="0" Grid.Row="1" Margin="25,0,10,10" BackgroundColor="#DFDFDF" CornerRadius="5" IsClippedToBounds="True" HasShadow="True" HorizontalOptions="Start" VerticalOptions="Start" HeightRequest="50" WidthRequest="50">
+
+                        <Image Aspect="AspectFill" HorizontalOptions="Center" VerticalOptions="Center" x:Name="ImgPet2" HeightRequest="50" WidthRequest="50">
+                            <Image.Source>
+                                <FontImageSource
+                                      FontFamily="FonteIcones"
+                                      Glyph="{x:Static iconFont:IconFont.Plus}"
+                                      Size="30"
+                                      Color="{StaticResource CorSecundaria}">
+                                </FontImageSource>
+                            </Image.Source>
+
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer  NumberOfTapsRequired="1" Tapped="ImgPet2_Tapped"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+
+                    </Frame>
+
+                    <!--Frame ImgPet3-->
+                    <Frame x:Name="frameImgPet3" Grid.Column="1" Grid.Row="1" Margin="25,0,10,10" BackgroundColor="#DFDFDF" CornerRadius="5" IsClippedToBounds="True" HasShadow="True" HorizontalOptions="Start" HeightRequest="50" WidthRequest="50">
+                        <StackLayout HorizontalOptions="Center" VerticalOptions="Center" >
+                            <Image Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Center" x:Name="ImgPet3" HeightRequest="50" WidthRequest="50">
+                                <Image.Source>
+                                    <FontImageSource
+                                      FontFamily="FonteIcones"
+                                      Glyph="{x:Static iconFont:IconFont.Plus}"
+                                      Size="30"
+                                      Color="{StaticResource CorSecundaria}">
+                                    </FontImageSource>
+                                </Image.Source>
+
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer  NumberOfTapsRequired="1" Tapped="ImgPet3_Tapped"/>
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </StackLayout>
+                    </Frame>
+
+                    <!--Frame ImgPet4-->
+                    <Frame x:Name="frameImgPet4" Grid.Column="2" Grid.Row="1" Margin="25,0,10,10" BackgroundColor="#DFDFDF" CornerRadius="5" IsClippedToBounds="True" HasShadow="True" HorizontalOptions="End" HeightRequest="50" WidthRequest="50">
+                        <StackLayout HorizontalOptions="Center" VerticalOptions="Center" >
+                            <Image Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Center" x:Name="ImgPet4" HeightRequest="50" WidthRequest="50">
+                                <Image.Source>
+                                    <FontImageSource
+                                      FontFamily="FonteIcones"
+                                      Glyph="{x:Static iconFont:IconFont.Plus}"
+                                      Size="30"
+                                      Color="{StaticResource CorSecundaria}">
+                                    </FontImageSource>
+                                </Image.Source>
+
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer  NumberOfTapsRequired="1" Tapped="ImgPet4_Tapped"/>
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </StackLayout>
+                    </Frame>
+                </Grid>
+
+                <!--Nome do Pet-->
+                <Frame  Margin="20,20,20,-15" BackgroundColor="#DFDFDF" HasShadow="False" CornerRadius="10" Padding="10,0,0,0" HorizontalOptions="FillAndExpand">
+                    <Entry Placeholder="Nome do Pet" Text="{Binding Path=UsuarioPet.nmPet}" FontSize="Small" BackgroundColor="Transparent" TextColor="{StaticResource CorSecundaria}" ReturnType="Next" >
+                        <Entry.Effects>
+                            <efeitos:PlainEntry/>
+                        </Entry.Effects>
+                    </Entry>
+                </Frame>
+
+                <Grid Margin="20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="13*"/>
+                        <ColumnDefinition Width="24*"/>
+                        <ColumnDefinition Width="24*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!--Data de Nascimento-->
+                    <Frame Grid.Row="0" Grid.Column="0"  BackgroundColor="#DFDFDF" HasShadow="True"  CornerRadius="10" Padding="10,0,0,0" >
+                        <Entry x:Name="entryDtNascimento" Placeholder="Data de Nascimento" Text="{Binding DtNascimento}" FontSize="Small" BackgroundColor="Transparent" TextColor="{StaticResource CorSecundaria}" Keyboard="Numeric" MaxLength="10" ReturnType="Next">
+                            <Entry.Effects>
+                                <efeitos:PlainEntry/>
+                            </Entry.Effects>
+                            <Entry.Behaviors>
+                                <comportamentos:ValidaData/>
+                                <comportamentos:FormataData/>
+                            </Entry.Behaviors>
+                        </Entry>
+                    </Frame>
+
+                    <!--Sexo-->
+                    <Label Grid.Row="0" Grid.Column="1" Text="Sexo:" Padding="5,10,0,0" />
+                    <Button x:Name="btnSexo_Macho" Grid.Row="0" Grid.Column="2" Text="Macho" TextColor="{StaticResource CorSecundaria}" BackgroundColor="{StaticResource CorPrincipal}" BorderColor="{StaticResource CorSecundaria}" BorderWidth="1" Clicked="SelecionouSexoMachoPet_Clicked" FontSize="15"  HeightRequest="40"/>
+                    <Button x:Name="btnSexo_Femea" Grid.Row="0" Grid.Column="3" Text="Fêmea" TextColor="{StaticResource CorSecundaria}" BackgroundColor="{StaticResource CorPrincipal}" BorderColor="{StaticResource CorSecundaria}" BorderWidth="1" Clicked="SelecionouSexoFemeaPet_Clicked" FontSize="15"  HeightRequest="40"/>
+                </Grid>
+
+                <!--Raça-->
+                <Frame  Margin="20,-15,20,-15" BackgroundColor="#DFDFDF" HasShadow="False" CornerRadius="10" Padding="10,0,0,0" HorizontalOptions="FillAndExpand">
+                    <Picker Title="Raça" x:Name="pickerRaca" FontSize="Small" BackgroundColor="Transparent" TextColor="{StaticResource CorSecundaria}" ItemDisplayBinding="{Binding raca}" SelectedItem="{Binding raca}" ItemsSource="{Binding ListaRacas}"  Unfocused="PickerRaca_Unfocused" >
+                        <Picker.Effects>
+                            <efeitos:PlainEntry/>
+                        </Picker.Effects>
+                    </Picker>
+                </Frame>
+
+                <!--Peso-->
+                <Frame Margin="20" BackgroundColor="#DFDFDF" HasShadow="False" CornerRadius="10" Padding="10,0,0,0" HorizontalOptions="FillAndExpand">
+                    <Entry x:Name="entryPeso" Placeholder="Peso (Kg)" FontSize="Small" BackgroundColor="Transparent" Text="{Binding Path=UsuarioPet.pesokg}" TextColor="{StaticResource CorSecundaria}" Keyboard="Numeric" ReturnType="Next">
+                        <Entry.Effects>
+                            <efeitos:PlainEntry/>
+                        </Entry.Effects>
+                    </Entry>
+                </Frame>
+
+                <!--Grid Porte-->
+                <Grid Margin="0,-10,20,10" >
+                    <Label  Grid.Row="0" Grid.Column="0" Text="Porte:" Padding="25,0,0,0" TextColor="{StaticResource CorSecundaria}" FontSize="12"    VerticalOptions="Center" HorizontalOptions="Start" />
+                    <Button x:Name="btnPorteP" Grid.Row="0" Grid.Column="1" Text="Pequeno" TextColor="{StaticResource CorSecundaria}" BackgroundColor="{StaticResource CorPrincipal}" BorderColor="{StaticResource CorSecundaria}" BorderWidth="1" FontSize="Small"  HorizontalOptions="Start" HeightRequest="38" Clicked="SelecionouPorteP_Clicked"/>
+                    <Button x:Name="btnPorteM" Grid.Row="0" Grid.Column="2" Text="Médio"   TextColor="{StaticResource CorSecundaria}" BackgroundColor="{StaticResource CorPrincipal}" BorderColor="{StaticResource CorSecundaria}" BorderWidth="1" FontSize="Small"  HorizontalOptions="Start" HeightRequest="38" Clicked="SelecionouPorteM_Clicked"/>
+                    <Button x:Name="btnPorteG" Grid.Row="0" Grid.Column="3" Text="Grande"  TextColor="{StaticResource CorSecundaria}" BackgroundColor="{StaticResource CorPrincipal}" BorderColor="{StaticResource CorSecundaria}" BorderWidth="1" FontSize="Small"  HorizontalOptions="Start" HeightRequest="38" Clicked="SelecionouPorteG_Clicked"/>
+                </Grid>
+
+
+                <!--Switchs: Vacinado, Vermifugado, Pedigree, Cuidado Especial-->
+                <Grid RowSpacing="0" Margin="10" >
+                    <Label Grid.Row="0" Grid.Column="0" Padding="15,0,0,0" TextColor="{StaticResource CorSecundaria}" Text="Vacinado" FontSize="12" VerticalOptions="Center" />
+                    <Label Grid.Row="1" Grid.Column="0" Padding="15,0,0,0" TextColor="{StaticResource CorSecundaria}" Text="Vermifugado" FontSize="12" VerticalOptions="Center" />
+                    <Label Grid.Row="2" Grid.Column="0" Padding="15,0,0,0" TextColor="{StaticResource CorSecundaria}" Text="Pedigree" FontSize="12" VerticalOptions="Center" />
+                    <Label Grid.Row="3" Grid.Column="0" Padding="15,0,0,0" TextColor="{StaticResource CorSecundaria}" Text="Cuidados  especiais" FontSize="12" VerticalOptions="Center" />
+
+                    <Switch x:Name="inVacinado"    IsToggled="{Binding Path=UsuarioPet.inVacinado}"        Grid.Row="0" Grid.Column="0" OnColor="LightGreen" ThumbColor="Green"  HorizontalOptions="End"  />
+                    <Switch x:Name="inVermifugado" IsToggled="{Binding Path=UsuarioPet.inVermifugado}"     Grid.Row="1" Grid.Column="0" OnColor="LightGreen" ThumbColor="Green"  HorizontalOptions="End"  />
+                    <Switch x:Name="inPedigree"    IsToggled="{Binding Path=UsuarioPet.inPedigree}"        Grid.Row="2" Grid.Column="0" OnColor="LightGreen" ThumbColor="Green"  HorizontalOptions="End"  />
+                    <Switch x:Name="inCuidados"    IsToggled="{Binding Path=UsuarioPet.inCuidadoEspecial}" Grid.Row="3" Grid.Column="0" OnColor="LightGreen" ThumbColor="Green"  HorizontalOptions="End"  />
+                </Grid>
+
+                <!-- Grid Personalidade-->
+                <Grid RowSpacing="-100" Margin="0,5,0,0">
+                    <Label Grid.Row="0" Grid.Column="0" Padding="25,0,0,0" FontAttributes="Bold" TextColor="{StaticResource CorSecundaria}" Text="Personalidade" FontSize="14" HorizontalOptions="Start" />
+
+                    <Frame Grid.Row="1" Margin="20,0,20,10"  BackgroundColor="#DFDFDF" HasShadow="True"  CornerRadius="10" HeightRequest="80" >
+                        <Grid>
+                            <!--Linha 0 das personalidades-->
+                            <Image x:Name="personalidadeDocil"      Grid.Row="0" Grid.Column="0" Source="personalidadeDocil.png"       HorizontalOptions="Start" VerticalOptions="Start" HeightRequest="40" WidthRequest="40">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer  NumberOfTapsRequired="1" Tapped="personalidadeDocil_Tapped"/>
+                                </Image.GestureRecognizers>
+                            </Image>
+
+                            <Image x:Name="personalidadeTranquilo"  Grid.Row="0" Grid.Column="1" Source="personalidadeTranquilo.png"   HorizontalOptions="Start" VerticalOptions="Start" HeightRequest="40" WidthRequest="40">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer  NumberOfTapsRequired="1" Tapped="personalidadeTranquilo_Tapped"/>
+                                </Image.GestureRecognizers>
+                            </Image>
+
+                            <Image x:Name="personalidadeAlerta"     Grid.Row="0" Grid.Column="2" Source="personalidadeAlerta.png"      HorizontalOptions="Start" VerticalOptions="Start" HeightRequest="40" WidthRequest="40">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer  NumberOfTapsRequired="1" Tapped="personalidadeAlerta_Tapped"/>
+                                </Image.GestureRecognizers>
+                            </Image>
+
+                            <Image x:Name="personalidadeAgressivo"  Grid.Row="0" Grid.Column="3" Source="personalidadeAgressivo.png"   HorizontalOptions="Start" VerticalOptions="Start" HeightRequest="40" WidthRequest="40">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer  NumberOfTapsRequired="1" Tapped="personalidadeAgressivo_Tapped"/>
+                                </Image.GestureRecognizers>
+                            </Image>
+
+                            <Image x:Name="personalidadeAtivoPouco" Grid.Row="0" Grid.Column="4" Source="personalidadeAtivoPouco.png"  HorizontalOptions="Start" VerticalOptions="Start" HeightRequest="40" WidthRequest="40">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer  NumberOfTapsRequired="1" Tapped="personalidadeAtivoPouco_Tapped"/>
+                                </Image.GestureRecognizers>
+                            </Image>
+
+                            <Image x:Name="personalidadeAtivoMedio" Grid.Row="0" Grid.Column="5" Source="personalidadeAtivoMedio.png"  HorizontalOptions="Start" VerticalOptions="Start" HeightRequest="40" WidthRequest="40">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer  NumberOfTapsRequired="1" Tapped="personalidadeAtivoMedio_Tapped"/>
+                                </Image.GestureRecognizers>
+                            </Image>
+
+                            <Image x:Name="personalidadeAtivoMuito" Grid.Row="0" Grid.Column="6" Source="personalidadeAtivoMuito.png"  HorizontalOptions="Start" VerticalOptions="Start" HeightRequest="40" WidthRequest="40">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer  NumberOfTapsRequired="1" Tapped="personalidadeAtivoMuito_Tapped"/>
+                                </Image.GestureRecognizers>
+                            </Image>
+
+                            <Image x:Name="personalidadeCarinhoso"  Grid.Row="0" Grid.Column="7" Source="personalidadeCarinhoso.png"   HorizontalOptions="Start" VerticalOptions="Start" HeightRequest="40" WidthRequest="40">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer  NumberOfTapsRequired="1" Tapped="personalidadeCarinhoso_Tapped"/>
+                                </Image.GestureRecognizers>
+                            </Image>
+
+
+                            <!--Linha 1 das personalidades-->
+                            <Image x:Name="personalidadeAssustado"  Grid.Row="1" Grid.Column="0" Source="personalidadeAssustado.png"   HorizontalOptions="Start" VerticalOptions="Start" HeightRequest="40" WidthRequest="40">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer  NumberOfTapsRequired="1" Tapped="personalidadeAssustado_Tapped"/>
+                                </Image.GestureRecognizers>
+                            </Image>
+
+                            <Image x:Name="personalidadePreguicoso" Grid.Row="1" Grid.Column="1" Source="personalidadePreguicoso.png"  HorizontalOptions="Start" VerticalOptions="Start" HeightRequest="40" WidthRequest="40">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer  NumberOfTapsRequired="1" Tapped="personalidadePreguicoso_Tapped"/>
+                                </Image.GestureRecognizers>
+                            </Image>
+
+                            <Image x:Name="personalidadeExplorador" Grid.Row="1" Grid.Column="2" Source="personalidadeExplorador.png"  HorizontalOptions="Start" VerticalOptions="Start" HeightRequest="40" WidthRequest="40">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer  NumberOfTapsRequired="1" Tapped="personalidadeExplorador_Tapped"/>
+                                </Image.GestureRecognizers>
+                            </Image>
+
+                            <Image x:Name="personalidadeCurioso"    Grid.Row="1" Grid.Column="3" Source="personalidadeCurioso.png"     HorizontalOptions="Start" VerticalOptions="Start" HeightRequest="40" WidthRequest="40">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer  NumberOfTapsRequired="1" Tapped="personalidadeCurioso_Tapped"/>
+                                </Image.GestureRecognizers>
+                            </Image>
+
+                            <Image x:Name="personalidadeMedroso"    Grid.Row="1" Grid.Column="4" Source="personalidadeMedroso.png"     HorizontalOptions="Start" VerticalOptions="Start" HeightRequest="40" WidthRequest="40">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer  NumberOfTapsRequired="1" Tapped="personalidadeMedroso_Tapped"/>
+                                </Image.GestureRecognizers>
+                            </Image>
+
+                        </Grid>
+                    </Frame>
+                </Grid>
+
+
+                <!-- Grid Descrição-->
+                <Grid RowSpacing="-100" Margin="0,5,0,0">
+                    <Label Grid.Row="0" Grid.Column="0" Padding="25,0,0,0" FontAttributes="Bold" TextColor="{StaticResource CorSecundaria}" Text="Descrição" FontSize="14" HorizontalOptions="Start" />
+
+                    <Frame Grid.Row="1" Margin="20,0,20,10"  BackgroundColor="White" HasShadow="True"  CornerRadius="10" HeightRequest="80" >
+                        <Grid>
+                            <ScrollView Orientation="Vertical">
+                                <Editor Placeholder="Fale um pouco sobre seu pet..." Text="{Binding Path=UsuarioPet.txDescricao}" AutoSize="TextChanges" FontSize="Small" BackgroundColor="Transparent" TextColor="{StaticResource CorSecundaria}" VerticalOptions="Start" HorizontalOptions="Start" Margin="-5,-15,0,0"   >
+                                    <Editor.Effects>
+                                        <efeitos:PlainEntry/>
+                                    </Editor.Effects>
+                                </Editor>
+                            </ScrollView>
+                        </Grid>
+                    </Frame>
+
+                </Grid>
+
+                <!--Linha separadora-->
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="10,0,10,10">
+                    <BoxView x:Name="boxViewSeparador" BackgroundColor="{StaticResource CorSecundaria}" HorizontalOptions="Center" HeightRequest="1" WidthRequest="150"  />
+                </StackLayout>
+
+                <Grid x:Name="GridAdocao" RowSpacing="-15">
+                    <Label Grid.Row="0" Grid.Column="0" Padding="25,0,0,0" FontAttributes="Bold" TextColor="{StaticResource CorSecundaria}" Text="Adoção" FontSize="14" HorizontalOptions="Start" />
+                    <!--Data de Adoção-->
+                    <Frame x:Name="frameDtAdocao" Grid.Row="1" Grid.Column="0"  BackgroundColor="#DFDFDF" HasShadow="True"  CornerRadius="10" Margin="20,0,20,0"  Padding="10,0,0,0" >
+                        <Entry x:Name="entryDtAdotado" Placeholder="Data em que fui adotado" Text="{Binding DtAdotado}" FontSize="Small" BackgroundColor="Transparent" TextColor="{StaticResource CorSecundaria}" Keyboard="Numeric" MaxLength="10" ReturnType="Next" Unfocused="entryDtAdotado_Unfocused">
+                            <Entry.Effects>
+                                <efeitos:PlainEntry/>
+                            </Entry.Effects>
+                            <Entry.Behaviors>
+                                <comportamentos:ValidaData/>
+                                <comportamentos:FormataData/>
+                            </Entry.Behaviors>
+                        </Entry>
+                    </Frame>
+
+                    <!--Data de Nascimento--><!--
+                    <Frame Grid.Row="0" Grid.Column="0"  BackgroundColor="#DFDFDF" HasShadow="True"  CornerRadius="10" Padding="10,0,0,0" >
+                        <Entry x:Name="entryDtAdocao" Placeholder="Data de Nascimento" Text="{Binding DtNascimento}" FontSize="Small" BackgroundColor="Transparent" TextColor="{StaticResource CorSecundaria}" Keyboard="Numeric" MaxLength="10" ReturnType="Next">
+                            <Entry.Effects>
+                                <efeitos:PlainEntry/>
+                            </Entry.Effects>
+                            <Entry.Behaviors>
+                                <comportamentos:ValidaData/>
+                                <comportamentos:FormataData/>
+                            </Entry.Behaviors>
+                        </Entry>
+                    </Frame>-->
+                    
+                </Grid>
+
+                <!--Botão Cadastrar-->
+                <Button Margin="20" Text="Cadastrar" x:Name="btnCadastrar" Command="{Binding CadastrarPetCommand}">
+
+                </Button>
+
+            </StackLayout>
+
+        </ScrollView>
+
+    </ContentPage.Content>
+</ContentPage>

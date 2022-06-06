@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProjetoTCC.Views.MeusPets"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:iconFont="clr-namespace:ProjetoTCC.Fonts;assembly=ProjetoTCC"
+             xmlns:toolkit="http://xamarin.com/schemas/2020/toolkit"
+             Visual="Material"
+             BackgroundColor="{StaticResource CorPrincipal}"
+             x:Name="paginaMeusPets"
+             Title="Meus Pets">
+    <ContentPage.Content>
+
+        <Grid>
+
+            <StackLayout Padding="20">
+
+                <CollectionView ItemsSource="{Binding ListaPetUsuario, Mode=TwoWay}" x:Name="collectionView">
+
+                    <CollectionView.ItemTemplate>
+
+                        <DataTemplate>
+
+                            <SwipeView BackgroundColor="{StaticResource CorPrincipal}">
+
+                                <SwipeView.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                                </SwipeView.GestureRecognizers>
+
+                                <SwipeView.RightItems  BackgroundColor="{StaticResource CorPrincipal}">
+
+                                    <SwipeItems>
+
+                                        <SwipeItemView Padding="0,10,0,10">
+
+                                            <Frame WidthRequest="40"
+                                                    CornerRadius="10"
+                                                    IsClippedToBounds="True" HasShadow="false"
+                                                    BackgroundColor="Red" >
+
+                                                <ImageButton VerticalOptions="Center"
+                                                                 HorizontalOptions="Center"
+                                                                 Margin="0"
+                                                                 BackgroundColor="Transparent"
+                                                                 Command="{Binding BindingContext.ExcluirPetCommand, Source={x:Reference paginaMeusPets}}" 
+                                                                 CommandParameter="{Binding .}">
+
+                                                    <ImageButton.Source>
+                                                        <FontImageSource
+                                                            FontFamily="FonteIcones"
+                                                            Glyph="{x:Static iconFont:IconFont.Delete}"                                                            
+                                                            Color="#FFFFFF" />
+                                                    </ImageButton.Source>
+                                                </ImageButton>
+
+
+                                            </Frame>
+
+
+
+                                        </SwipeItemView>
+
+                                        <SwipeItemView Padding="0,10,0,10">
+
+                                            <Frame WidthRequest="40"
+                                                    CornerRadius="10"
+                                                    IsClippedToBounds="True" HasShadow="false"
+                                                    BackgroundColor="{StaticResource CorSecundaria}">
+
+                                                <ImageButton VerticalOptions="Center"
+                                                         HorizontalOptions="Center"
+                                                         Margin="0"
+                                                         BackgroundColor="Transparent"
+                                                         Command="{Binding BindingContext.EditarPetCommand, Source={x:Reference paginaMeusPets}}" 
+                                                         CommandParameter="{Binding .}">
+
+                                                    <ImageButton.Source>
+                                                        <FontImageSource 
+                                                                FontFamily="FonteIcones"
+                                                                Glyph="{x:Static iconFont:IconFont.Pencil}"                                                                
+                                                                Color="#FFFFFF" />
+                                                    </ImageButton.Source>
+
+                                                </ImageButton>
+                                            </Frame>
+                                        </SwipeItemView>
+
+                                    </SwipeItems>
+
+                                </SwipeView.RightItems>
+
+
+                                <Grid Padding="0,10,0,10">
+
+                                    <Grid>
+                                        <StackLayout Grid.Row="0" Grid.Column="0">
+                                            <Frame x:Name="frameSituacaoPet" BackgroundColor="{Binding frameSituacaoPet_Color}" CornerRadius="10" HeightRequest="-15" HasShadow="False">
+                                                <Label x:Name="labelSituacaoPet" Text="{Binding labelSituacaoPet_Text}" FontSize="12" TextColor="#FFFFFF" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" Margin="0,-15,0,0" />
+                                            </Frame>
+                                        </StackLayout>
+                                    </Grid>
+
+                                    <Frame IsClippedToBounds="True" HasShadow="false" BorderColor="{StaticResource CorSecundaria}" BackgroundColor="Transparent" Padding="20,10,20,10" CornerRadius="10">
+
+                                        <Grid ColumnDefinitions="*,15" >
+
+                                            <StackLayout >
+
+
+                                                <Grid Padding="0,22,0,0">
+
+                                                    <StackLayout Grid.Row="0" Grid.Column="0" Padding="-10,0,0,0">
+
+                                                        <Frame x:Name="frameFoto" Padding="0" CornerRadius="10" IsClippedToBounds="True" HasShadow="True" HorizontalOptions="Start" VerticalOptions="Start" HeightRequest="100" WidthRequest="100">
+                                                            <Image  Source="{Binding ImgSourcePet1}" Aspect="AspectFill" HorizontalOptions="Center" VerticalOptions="Center" x:Name="frameFotoUsuario" HeightRequest="100" WidthRequest="100">
+
+                                                            </Image>
+                                                        </Frame>
+
+                                                    </StackLayout>
+
+                                                    <StackLayout Grid.Row="0" Grid.Column="1" Padding="-50,15,0,0" HorizontalOptions="Start" Spacing="2">
+                                                        <Label Text="{Binding nmPet}"          FontSize="11" TextColor="Black"/>
+                                                        <Label Text="{Binding tipoPetEscrito}" FontSize="11" TextColor="Black"/>
+                                                        <Label Text="{Binding idade}"          FontSize="11" TextColor="Black"/>
+                                                        <Label Text="{Binding dtCadastroEscrito, StringFormat='Cadastrado em: {0:F0} '}" FontSize="11" TextColor="Black"/>
+                                                    </StackLayout>
+                                                </Grid>
+
+                                                <!--<Image HorizontalOptions="Start" Source="{Binding ImgSourcePet1}"   HeightRequest="100" WidthRequest="100"/>-->
+                                                <!--<Label Text="{Binding nmPet}"          FontSize="12" TextColor="Black"/>
+                                            <Label Text="{Binding tipoPetEscrito}" FontSize="12" TextColor="Black"/>
+                                            <Label Text="{Binding idade}"          FontSize="12" TextColor="Black"/>
+                                            <Label Text="{Binding dtCadastroEscrito, StringFormat='Cadastrado em: {0:F0} '}" FontSize="12" TextColor="Black"/>-->
+
+
+                                            </StackLayout>
+
+
+
+                                            <Image Grid.Column="1"
+                                                       VerticalOptions="Center"
+                                                       HorizontalOptions="Center"
+                                                       BackgroundColor="Transparent">
+                                                <Image.Source>
+                                                    <FontImageSource
+                                                            FontFamily="FonteIcones"
+                                                            Glyph="{x:Static iconFont:IconFont.Menu}"
+                                                            Color="{StaticResource CorSecundaria}" />
+                                                </Image.Source>
+                                            </Image>
+
+                                        </Grid>
+
+                                    </Frame>
+
+
+                                </Grid>
+
+                            </SwipeView>
+
+                        </DataTemplate>
+
+                    </CollectionView.ItemTemplate>
+
+                </CollectionView>
+
+            </StackLayout>
+
+            <ActivityIndicator IsRunning="{Binding IsBusy}" 
+                               IsVisible="{Binding IsBusy}" 
+                               Color="{StaticResource CorSecundaria}" 
+                               HeightRequest="30"
+                               WidthRequest="30"
+                               VerticalOptions="Center" 
+                               HorizontalOptions="Center"/>
+
+        </Grid>
+
+    </ContentPage.Content>
+</ContentPage>
