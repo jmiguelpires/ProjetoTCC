@@ -11,7 +11,7 @@ namespace ProjetoTCC.API
     {
         public static async Task<List<Model.Municipio>> MunicipiosGetAsync(int cdEstado)
         {
-            try
+            try 
             {
                 //var url = $"ibge/estado/{cdEstado}/GetMunicipios";
                 var url = $"https://servicodados.ibge.gov.br/api/v1/localidades/estados/{cdEstado}/municipios";
