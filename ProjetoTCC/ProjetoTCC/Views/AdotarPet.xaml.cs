@@ -27,18 +27,11 @@ namespace ProjetoTCC.Views
             adotarPetViewModel = new AdotarPetViewModel(convidado);
             this.BindingContext = adotarPetViewModel;
 
-            //_usuarioPet = usuarioPet;
-
             //Define a cor da Barra da página
             var navigationPage = Application.Current.MainPage as NavigationPage;
             navigationPage.BarBackgroundColor = Color.FromHex("#00374f");
-            
-            
-        }
 
-        //private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
-        //{
-        //    Navigation.PushModalAsync(new PetDetalhe(_usuarioPet));            
-        //}
+
+        }
     }
 }

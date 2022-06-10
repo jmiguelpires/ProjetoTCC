@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
-//using ZXing.QrCode.Internal;
 
 namespace ProjetoTCC.Views.Implementacao
 {

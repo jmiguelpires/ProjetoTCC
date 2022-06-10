@@ -26,12 +26,6 @@ namespace ProjetoTCC.Views
             meusPetsViewModel = new MeusPetsViewModel(_usuario);
             this.BindingContext = meusPetsViewModel;
 
-
-            //var img64 = _usuario.UsuarioPet.ImgPet1.Replace("data:image/jpeg;base64,", "") ?? "";
-            //foto1Pet.HorizontalOptions = LayoutOptions.FillAndExpand;
-            //foto1Pet.VerticalOptions = LayoutOptions.FillAndExpand;
-            //foto1Pet.Source = ImageSource.FromStream(() => new MemoryStream(Convert.FromBase64String(img64)));            
-
             //Define a cor da Barra da página
             var navigationPage = Application.Current.MainPage as NavigationPage;
             navigationPage.BarBackgroundColor = Color.FromHex("#00374f");

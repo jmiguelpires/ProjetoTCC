@@ -90,7 +90,6 @@ namespace ProjetoTCC.Model
                 {
                     return null;
                 }
-                //string img64 = "";
                 string extensaoImagem = "";
 
                 if (imgFotoPerfil.Contains("data:image/png;base64"))

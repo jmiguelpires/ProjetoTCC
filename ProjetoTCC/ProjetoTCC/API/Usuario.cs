@@ -43,7 +43,7 @@ namespace ProjetoTCC.API
 
                 var json = JsonConvert.SerializeObject(usuario, new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore });
 
-                var Usuario = await servico.GetUsuarioAsync<Model.Usuario>(url, json);
+                var Usuario = await servico.GetUsuarioAsync<Model.Usuario>(url, json);                     
 
                 return Usuario;
             }

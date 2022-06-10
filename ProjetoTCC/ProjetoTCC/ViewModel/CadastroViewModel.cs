@@ -11,7 +11,7 @@ using Xamarin.Forms;
 
 namespace ProjetoTCC.ViewModel
 {
-    public class CadastroViewModel
+    public class CadastroViewModel : ViewModelBase
     {
         public ICommand CadastrarCommand { get; set; }
 
@@ -34,7 +34,6 @@ namespace ProjetoTCC.ViewModel
             {
                 estado = value;
                 this.Notify(nameof(Estado));
-                //usuario.CdEstado = estado?.CdEstado;
             }
         }
 
@@ -100,9 +99,6 @@ namespace ProjetoTCC.ViewModel
 
             _inEdicao = usuario != null;
 
-
-            //Cidade = Usuario.Cidade.ToList();
-
             ListaEstados = new ObservableCollection<Estado>(Util.Rotinas.ListaEstados());
             ListaCidades = new ObservableCollection<Municipio>();
 
@@ -111,7 +107,6 @@ namespace ProjetoTCC.ViewModel
             {
                 Estado = ListaEstados.FirstOrDefault(e => e.CdEstado == Usuario.CdEstado);
                 DtNascimento = Usuario.dtNascimento?.ToString("dd/MM/yyyy");
-                //FiltraListaMunicipios(Estado);
             }
         }
 
@@ -131,15 +126,6 @@ namespace ProjetoTCC.ViewModel
                         Nome = listaFiltrada[i].Nome
                     });
                 }
-
-                //if (Usuario.Cidade == null)//(cidade == null)
-                //{
-                //    Cidade = ListaCidades?.FirstOrDefault();
-                //}
-                //else
-                //{
-                //    Cidade = ListaCidades?.FirstOrDefault(x => x.NmMunicipio == Usuario.Cidade);
-                //}
             }
             catch (Exception ex)
             {

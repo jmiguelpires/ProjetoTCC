@@ -9,7 +9,6 @@ namespace ProjetoTCC.Model
     public class UsuarioPet
     {
         public long idPet { get; set; }
-        //public long CPFCNPJ { get; set; }
         public virtual Usuario Usuario { get; set; }
         public string CPFCNPJ { get; set; }
         public string tipoPet { get; set; }
@@ -52,28 +51,6 @@ namespace ProjetoTCC.Model
             get
             {
                 var hoje = DateTime.Today;
-                //var _idade = hoje.Year - dtNascimento.Year;
-                //var _idade = hoje - dtNascimento;
-
-                //if (hoje < dtNascimento?.AddYears(_idade.Value))
-                //{
-                //    _idade--;
-
-                //    if (_idade == 0)
-                //    {
-                //        var meses = (hoje.Month - dtNascimento?.Month + 12) % 12;
-
-                //        return $"{Math.Abs(meses.Value)} Meses";
-                //    }
-                //    else if (_idade == 1)
-                //    {
-                //        return $"{_idade} Ano";
-                //    }
-                //    else if (_idade > 1)
-                //    {
-                //        return $"{_idade} Anos";
-                //    }
-                //}
                 var DifData = hoje.Subtract(dtNascimento);
                 var QtdDias = DifData.Days;
                 int idade = 0;
@@ -367,7 +344,6 @@ namespace ProjetoTCC.Model
                 {
                     return null;
                 }
-                //string img64 = "";
                 string extensaoImagem = "";
 
                 if (ImgPet1.Contains("data:image/png;base64"))
@@ -398,7 +374,6 @@ namespace ProjetoTCC.Model
                 {
                     return null;
                 }
-                //string img64 = "";
                 string extensaoImagem = "";
 
                 if (ImgPet2.Contains("data:image/png;base64"))
@@ -429,7 +404,6 @@ namespace ProjetoTCC.Model
                 {
                     return null;
                 }
-                //string img64 = "";
                 string extensaoImagem = "";
 
                 if (ImgPet3.Contains("data:image/png;base64"))
@@ -460,7 +434,6 @@ namespace ProjetoTCC.Model
                 {
                     return null;
                 }
-                //string img64 = "";
                 string extensaoImagem = "";
 
                 if (ImgPet4.Contains("data:image/png;base64"))

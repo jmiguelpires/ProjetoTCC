@@ -8,7 +8,7 @@ using Xamarin.Forms;
 
 namespace ProjetoTCC.ViewModel
 {
-    public class PetDetalheViewModel //: INotifyPropertyChanged
+    public class PetDetalheViewModel 
     {
 
         private UsuarioPet _usuarioPet;

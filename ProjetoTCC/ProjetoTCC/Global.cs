@@ -12,18 +12,6 @@ namespace ProjetoTCC
         public static Interface.IMessageService MessageService { get; set; }
         public static Interface.INavigationService NavigationService { get; set; }
 
-        //private static Model.Usuario _usuario;
-        //public static Model.Usuario Usuario
-        //{
-        //    get { return _usuario; }
-
-        //    set
-        //    {
-        //        _usuario = value;
-        //        Global.Usuario = _usuario;
-        //    }
-        //}
-
         private static Model.Usuario _usuarioGlobal;
         public static Model.Usuario UsuarioGlobal
         {

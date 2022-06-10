@@ -14,7 +14,7 @@ namespace ProjetoTCC.ViewModel
 
         }
 
-        private Model.Usuario  usuario;
+        private Model.Usuario usuario;
         public Model.Usuario Usuario
         {
             get
@@ -39,10 +39,10 @@ namespace ProjetoTCC.ViewModel
             }
             else
             {
-                var _senha = Senha;//Util.Rotinas.SHA1(Senha);
+                var _senha = Senha;
 
                 var usuario = new Model.Usuario
-                {                    
+                {
                     email = Email,
                     senha = _senha
                 };
@@ -68,6 +68,27 @@ namespace ProjetoTCC.ViewModel
             }
 
             return usuarioAutenticado;
+        }
+
+        public async void Logout()
+        {
+            try
+
+            {
+                var deslogar = await Global.MessageService.ShowMessageYesNoAsync("Deseja desconectar?", "Log Off");
+                if (deslogar)
+                {
+                    Util.Global.IUsuario.ExcluirUsuarioLocal();
+                    
+                    Global.UsuarioGlobal = null;
+
+                    await Global.NavigationService.NavigateToLogin();
+                }
+            }
+            catch (Exception e)
+            {
+                await Global.MessageService.ShowMessageAsync(e.Message, "Erro");
+            }
         }
 
 

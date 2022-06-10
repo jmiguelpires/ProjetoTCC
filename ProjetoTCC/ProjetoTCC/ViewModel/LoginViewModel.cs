@@ -17,7 +17,6 @@ namespace ProjetoTCC.ViewModel
             set
             {
                 email = value;
-                //this.Notify(nameof(Email));
             }
         }
 
@@ -28,7 +27,6 @@ namespace ProjetoTCC.ViewModel
             set
             {
                 senha = value;
-                //this.Notify(nameof(Senha));
             }
         }
 
@@ -78,12 +76,12 @@ namespace ProjetoTCC.ViewModel
 
                 IsBusy = true;
 
-                var usuarioAutenticado = await Logar(this.Email, this.Senha);                
+                var usuarioAutenticado = await Logar(this.Email, this.Senha);
                 if (usuarioAutenticado != null)
                 {
                     ProjetoTCC.Global.UsuarioGlobal = usuarioAutenticado;
                     await Global.NavigationService.NavigateToHome(false);
-                }                
+                }
             }
             catch (Exception ex)
             {
@@ -106,9 +104,9 @@ namespace ProjetoTCC.ViewModel
 
                 IsBusy = true;
 
-               
-                    await Global.NavigationService.NavigateToHome(true);
-               
+
+                await Global.NavigationService.NavigateToHome(true);
+
             }
             catch (Exception ex)
             {

@@ -17,6 +17,7 @@ namespace ProjetoTCC.API
         //private const string _urlBase = "https://localhost:44337/api/Usuario/";
         //private const string _urlBase = "https://localhost:44337/api/";
         //private const string _urlBase = "http://127.0.0.1:25486/api/";
+
         private const string _urlBase = "http://10.0.2.2:25486/api/";
 
         private const int maximoTentativas = 1;
@@ -47,9 +48,6 @@ namespace ProjetoTCC.API
         private void RequestHeader(HttpClient client)
         {
             client.DefaultRequestHeaders.Clear();
-            //string bearer = "Bearer " + Util.Global.UsuarioGlobal?.Token ?? "";
-            //string bearer = "Bearer " + "";
-            //client.DefaultRequestHeaders.Add("Authorization", bearer);
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
@@ -256,15 +254,13 @@ namespace ProjetoTCC.API
                     using (var client = new HttpClient(GetInsecureHandler()))
                     {
                         client.BaseAddress = new Uri(UrlBase);
-                        //RequestHeader(client);
+
                         client.Timeout = _timeout;
 
                         var response = await client.GetAsync(UrlBase + url);
 
                         if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
                         {
-                            //await Usuario.BuscarTokenPostAsync();
-
                             RequestHeader(client);
 
                             response = await client.GetAsync(url);
@@ -295,9 +291,9 @@ namespace ProjetoTCC.API
                                 var messageError = JsonConvert.DeserializeObject<MessageError>(jsonResult);
                                 var exc = new Exception(messageError.Message);
 
-                                if (response.StatusCode == System.Net.HttpStatusCode.BadRequest) //se veio badrequest, a mensagem foi enviada pela api para ser mostrada ao cliente
+                                if (response.StatusCode == System.Net.HttpStatusCode.BadRequest) //se veio badrequest, a mensagem foi enviada pela api para ser mostrada ao usuário
                                 {
-                                    //exc.Source = "Solidcon_API";
+
                                 }
 
                                 throw exc;
@@ -369,15 +365,13 @@ namespace ProjetoTCC.API
                     using (var client = new HttpClient(GetInsecureHandler()))
                     {
                         client.BaseAddress = new Uri(UrlBase);
-                        //RequestHeader(client);
+
                         client.Timeout = _timeout;
 
                         var response = await client.GetAsync(UrlBase + url);
 
                         if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
                         {
-                            //await Usuario.BuscarTokenPostAsync();
-
                             RequestHeader(client);
 
                             response = await client.GetAsync(url);
@@ -408,9 +402,9 @@ namespace ProjetoTCC.API
                                 var messageError = JsonConvert.DeserializeObject<MessageError>(jsonResult);
                                 var exc = new Exception(messageError.Message);
 
-                                if (response.StatusCode == System.Net.HttpStatusCode.BadRequest) //se veio badrequest, a mensagem foi enviada pela api para ser mostrada ao cliente
+                                if (response.StatusCode == System.Net.HttpStatusCode.BadRequest) //se veio badrequest, a mensagem foi enviada pela api para ser mostrada ao usuário
                                 {
-                                    //exc.Source = "Solidcon_API";
+
                                 }
 
                                 throw exc;
@@ -498,7 +492,7 @@ namespace ProjetoTCC.API
                         var item = JsonConvert.DeserializeObject<List<T>>(jsonResult);
                         return item;
                     }
-                    else //if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
+                    else
                     {
                         throw new Exception("Serviço não encontrado: " + url);
                     }
@@ -518,118 +512,6 @@ namespace ProjetoTCC.API
             }
         }
 
-        //public async Task<List<T>> GetAsyncIBGE<T>(string url)
-        //{
-        //    int contador = 1;
-
-        //    do
-        //    {
-        //        try
-        //        {
-        //            using (var client = new HttpClient())
-        //            {
-        //                client.BaseAddress = new Uri(UrlBase);
-        //                //RequestHeader(client);
-        //                client.Timeout = _timeout;
-
-        //                var response = await client.GetAsync(url);
-
-        //                if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
-        //                {
-        //                    //await Usuario.BuscarTokenPostAsync();
-
-        //                    //RequestHeader(client);
-
-        //                    response = await client.GetAsync(url);
-        //                }
-
-        //                var jsonResult = await response.Content.ReadAsStringAsync();
-
-        //                if (response.StatusCode == System.Net.HttpStatusCode.OK)
-        //                {
-        //                    var lista = JsonConvert.DeserializeObject<List<T>>(jsonResult);
-        //                    return lista;
-        //                }
-        //                //se for 408(timeout), 404(notfound), 208 ou entre 500 e 599, tenta de novo
-        //                else if (response.StatusCode == System.Net.HttpStatusCode.NotFound || response.StatusCode == System.Net.HttpStatusCode.RequestTimeout || (int)response.StatusCode == 208 || ((int)response.StatusCode >= 500 && (int)response.StatusCode <= 599))
-        //                {
-        //                    contador += 1;
-
-        //                    // Se não for 208 ou 400 troca a URL
-        //                    if (((int)response.StatusCode != 208))
-        //                    {
-        //                        //AlteraUrl();
-        //                    }
-        //                }
-        //                else
-        //                {
-        //                    try
-        //                    {
-        //                        var messageError = JsonConvert.DeserializeObject<MessageError>(jsonResult);
-        //                        var exc = new Exception(messageError.Message);
-
-        //                        if (response.StatusCode == System.Net.HttpStatusCode.BadRequest) //se veio badrequest, a mensagem foi enviada pela api para ser mostrada ao cliente
-        //                        {
-        //                            //exc.Source = "Solidcon_API";
-        //                        }
-
-        //                        throw exc;
-        //                    }
-        //                    catch (JsonException)
-        //                    {
-        //                        throw new Exception(jsonResult);
-        //                    }
-        //                    catch (Exception e)
-        //                    {
-        //                        throw e;
-        //                    }
-        //                }
-        //            }
-        //        }
-        //        // Caso tenha acontecido alguma WebException, devemos trocar a URL e tentar novamente.
-        //        catch (System.Net.WebException e)
-        //        {
-        //            contador += 1;
-        //            if (e.Response is System.Net.HttpWebResponse)
-        //            {
-        //                System.Net.HttpWebResponse Resp = (System.Net.HttpWebResponse)e.Response;
-
-        //                // Se não for 208 troca a URL
-        //                if (((int)Resp.StatusCode != 208))
-        //                {
-        //                    //AlteraUrl();
-        //                }
-        //            }
-        //        }
-        //        catch (HttpRequestException e)
-        //        {
-        //            throw new Exception("Verifique sua conexão com a internet: " + e.Message);
-        //        }
-        //        catch (TaskCanceledException)
-        //        {
-        //            contador += 1;
-        //            //AlteraUrl();
-
-        //            //throw new Exception("Tempo limite esgotado, verifique sua conexão com a internet: " + e.Message);
-        //        }
-        //        catch (OperationCanceledException)
-        //        {
-        //            contador += 1;
-        //            //AlteraUrl();
-        //        }
-        //        catch (Exception e)
-        //        {
-        //            throw e;
-        //        }
-
-        //    } while (contador <= maximoTentativas);
-
-        //    if (true) //(contador > maximoTentativas)
-        //    {
-        //        throw new Exception("Quantidade máximas de tentativas esgotadas, verifique sua conexão com a internet.");
-        //    }
-        //}
-
         public async Task DeleteAsync(string url)
         {
             int contador = 1;
@@ -641,15 +523,13 @@ namespace ProjetoTCC.API
                     using (var client = new HttpClient(GetInsecureHandler()))
                     {
                         client.BaseAddress = new Uri(UrlBase);
-                        //RequestHeader(client);
+
                         client.Timeout = _timeout;
 
                         var response = await client.DeleteAsync(UrlBase + url);
 
                         if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
                         {
-                            //await Usuario.BuscarTokenPostAsync();
-
                             RequestHeader(client);
 
                             response = await client.DeleteAsync(url);
@@ -669,7 +549,7 @@ namespace ProjetoTCC.API
                             // Se não for 208 ou 400 troca a URL
                             if (((int)response.StatusCode != 208))
                             {
-                               // AlteraUrl();
+                                // AlteraUrl();
                             }
                         }
                         else
@@ -713,8 +593,7 @@ namespace ProjetoTCC.API
                 {
                     contador += 1;
                     //AlteraUrl();
-
-                    //throw new Exception("Tempo limite esgotado, verifique sua conexão com a internet: " + e.Message);
+                                       
                 }
                 catch (OperationCanceledException)
                 {
@@ -850,7 +729,7 @@ namespace ProjetoTCC.API
 
             try
             {
-                byte[] _buffer = origem; //= Convert.FromBase64String(docZIP);
+                byte[] _buffer = origem; 
                 int msgLength = BitConverter.ToInt32(_buffer, 0);
                 _ms.Write(_buffer, 0, _buffer.Length);
                 byte[] _bytes = new byte[msgLength - 1 + 1];
@@ -858,7 +737,6 @@ namespace ProjetoTCC.API
                 _zipStream = new System.IO.Compression.GZipStream(_ms, System.IO.Compression.CompressionMode.Decompress);
                 _zipStream.Read(_bytes, 0, _bytes.Length);
                 txt = System.Text.Encoding.UTF8.GetString(_bytes);
-                //_xml = _xml.Replace(Constants.vbNullChar, null);
             }
             catch (Exception)
             {

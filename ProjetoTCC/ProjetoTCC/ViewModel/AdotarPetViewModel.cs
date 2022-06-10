@@ -81,14 +81,10 @@ namespace ProjetoTCC.ViewModel
 
                 IsBusy = true;
 
-                //List<UsuarioPet> _listaPets = await API.UsuarioPet.ListaPetsGetAsync();
-                //ListaPets = new ObservableCollection<UsuarioPet>(_listaPets);
-
                 List<UsuarioPet> _listaPets = await API.UsuarioPet.ListaPetsGetAsync();
                 _listaPets = _listaPets.Where(p => p.dtAdotado == null).ToList();
                 ListaPets = new ObservableCollection<UsuarioPet>(_listaPets);
 
-                //UsuarioPet = await API.UsuarioPet.UsuarioPetGetAsync();
             }
             catch (Exception ex)
             {

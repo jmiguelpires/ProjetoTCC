@@ -17,8 +17,6 @@ namespace ProjetoTCC.ViewModel
     {
         public ICommand CadastrarPetCommand { get; set; }
 
-        //private Usuario usuario;
-
         private string dtNascimento;
         public string DtNascimento
         {
@@ -86,15 +84,6 @@ namespace ProjetoTCC.ViewModel
 
             this.UsuarioPet = usuarioPet;
 
-
-            //if (! UsuarioPet.EmEdicao)
-            //{
-            //    UsuarioPet = new UsuarioPet
-            //    {
-
-            //    };
-            //}
-
             if (UsuarioPet.EmEdicao)
             {
                 TipoPet(UsuarioPet.tipoPet);
@@ -102,8 +91,6 @@ namespace ProjetoTCC.ViewModel
                 DtNascimento = UsuarioPet.dtNascimento.ToString("dd/MM/yyyy");
                 DtAdotado = UsuarioPet.dtAdotado?.ToString("dd/MM/yyyy");
             }
-
-            //usuario = new Usuario();
         }
 
         private async Task CadastrarPet()
@@ -115,7 +102,7 @@ namespace ProjetoTCC.ViewModel
                 if (!UsuarioPet.EmEdicao)
                 {
                     UsuarioPet.dtCadastro = DateTime.Today;
-                    UsuarioPet.CPFCNPJ = Global.UsuarioGlobal.CPFCNPJ.ToString().Replace(".","").Replace("/", "").Replace("-", "");
+                    UsuarioPet.CPFCNPJ = Global.UsuarioGlobal.CPFCNPJ.ToString().Replace(".", "").Replace("/", "").Replace("-", "");
                     await API.UsuarioPet.CadastrarPostAsync(UsuarioPet);
                     await Global.MessageService.ShowMessageAsync("Pet cadastrado com sucesso!", "Parabéns!"); ;
                 }

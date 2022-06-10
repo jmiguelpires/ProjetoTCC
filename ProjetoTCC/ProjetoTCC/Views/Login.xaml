@@ -34,7 +34,7 @@
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal"  Padding="20,10,20,20">
-                    <Label Text="Esqueci minha senha" TextColor="{StaticResource CorSecundaria}" HorizontalOptions="Center" VerticalOptions="EndAndExpand" FontSize="Small" >
+                    <Label Text="Esqueci minha senha" TextColor="{StaticResource CorSecundaria}" HorizontalOptions="Center" VerticalOptions="EndAndExpand" FontSize="Small" IsVisible="false">
                     </Label>
 
                     <Label Text="Criar conta" TextColor="{StaticResource CorSecundaria}" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand" FontSize="Small" >

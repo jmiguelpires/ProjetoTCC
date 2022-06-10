@@ -40,6 +40,9 @@ namespace ProjetoTCC.Views
 
                 //Verifica se está em edição
                 _usuario.EmEdicao = false;
+
+                //esconde logout imagem de logout
+                foto_logout.IsVisible = false;
             }
             else //veio do Meu Perfil, logo, é para editar o perfil
             {
@@ -82,36 +85,39 @@ namespace ProjetoTCC.Views
                     foto.Source = ImageSource.FromStream(() => new MemoryStream(Convert.FromBase64String(img64)));
                 }
 
-            }
+                //exibe logout imagem de logout
+                foto_logout.IsVisible = true;
 
-            //cadastroViewModel = new CadastroViewModel(_usuario);
-            //BindingContext = cadastroViewModel;
+            }
         }
 
         protected override async void OnAppearing()
         {
-            if (_usuario.EmEdicao)
+            try
             {
-                var estado = cadastroViewModel.ListaEstados.FirstOrDefault(e => e.CdEstado == _usuario.CdEstado);
-                if (estado != null)
+                if (_usuario.EmEdicao)
                 {
-                    pickerEstado.SelectedItem = estado;
-                    await cadastroViewModel.FiltraListaMunicipios(estado);
-                    var cidade = cadastroViewModel.ListaCidades.FirstOrDefault(e => e.Nome == _usuario.Cidade);
-                    if (cidade != null)
+                    var estado = cadastroViewModel.ListaEstados.FirstOrDefault(e => e.CdEstado == _usuario.CdEstado);
+                    if (estado != null)
                     {
-                        pickerCidade.SelectedItem = cidade;
+                        pickerEstado.SelectedItem = estado;
+                        await cadastroViewModel.FiltraListaMunicipios(estado);
+                        var cidade = cadastroViewModel.ListaCidades.FirstOrDefault(e => e.Nome == _usuario.Cidade);
+                        if (cidade != null)
+                        {
+                            pickerCidade.SelectedItem = cidade;
+                        }
                     }
-                    //var cidade = new Municipio
-                    //{
-                    //    NmMunicipio = _usuario.Cidade,
-                    //    Nome = _usuario.Cidade
-                    //};
-
-                    //cadastroViewModel.ListaCidades.Add(new Municipio { NmMunicipio = _usuario.Cidade });
-                    //var cidade = cadastroViewModel.ListaCidades.FirstOrDefault(e => e.Nome == _usuario.Cidade);
-
-                    //pickerCidade.SelectedItem = cidade;
+                }
+            }
+            catch
+            {
+                try
+                {
+                    OnAppearing();
+                }
+                catch
+                {
 
                 }
             }
@@ -230,6 +236,11 @@ namespace ProjetoTCC.Views
                     await Global.MessageService.ShowMessageAsync(ex.Message, "Erro");
                 }
             }
+        }
+
+        private void Logout_Tapped(object sender, EventArgs e)
+        {
+            cadastroViewModel.Logout();
         }
     }
 }

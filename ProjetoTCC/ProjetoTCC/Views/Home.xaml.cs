@@ -23,8 +23,6 @@ namespace ProjetoTCC.Views
         {
             InitializeComponent();
             Convidado = convidado;
-            //adotarPetViewModel = new AdotarPetViewModel();
-            //BindingContext = adotarPetViewModel;
         }
 
         private void BotaoAdotarPet_Clicked(object sender, EventArgs e)

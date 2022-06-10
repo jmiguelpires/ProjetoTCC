@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -56,7 +57,6 @@ namespace ProjetoTCC.ViewModel
 
             this.ExcluirPetCommand = new Command<UsuarioPet>(async (usuarioPet) => await ExcluirPet(usuarioPet));
             this.EditarPetCommand = new Command<UsuarioPet>(async (usuarioPet) => await EditarPet(usuarioPet));
-
         }
 
         private async Task ExcluirPet(UsuarioPet usuarioPet)
@@ -100,8 +100,6 @@ namespace ProjetoTCC.ViewModel
                 IsBusy = true;
 
                 await Global.NavigationService.NavigateToCadastrarPet(usuarioPet);
-                //await API.UsuarioPet.ExcluirPetDeleteAsync(usuarioPet);
-                //ListaPetUsuario.Remove(usuarioPet);
 
                 this.Notify(nameof(ListaPetUsuario));
 
@@ -130,8 +128,8 @@ namespace ProjetoTCC.ViewModel
                 Usuario.CPFCNPJ = Usuario.CPFCNPJ.ToString().Replace(".", "").Replace("/", "").Replace("-", "");
 
                 Usuario = await ProjetoTCC.API.Usuario.UsuarioCPFGetAsync(Usuario);
-
-                ListaPetUsuario = new ObservableCollection<UsuarioPet>(Usuario.UsuarioPets);
+                                
+                ListaPetUsuario = new ObservableCollection<UsuarioPet>(Usuario.UsuarioPets.OrderByDescending(u => u.dtCadastro));
 
             }
             catch (Exception ex)
